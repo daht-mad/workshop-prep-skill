@@ -4,3 +4,4 @@ daily-study-digest/
 
 # OS files
 .DS_Store
+*.skill
