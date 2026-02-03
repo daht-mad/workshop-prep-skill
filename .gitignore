@@ -1,0 +1,6 @@
+# 예시 산출물 - 배포하지 않음
+daily-study-digest/
+.claude/
+
+# OS files
+.DS_Store
