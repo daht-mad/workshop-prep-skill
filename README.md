@@ -74,16 +74,17 @@ irm https://raw.githubusercontent.com/daht-mad/workshop-prep-skill/main/install.
 
 ## 주요 기능
 
-### 7단계 인터뷰 워크플로우
+### 8단계 인터뷰 & 배포 워크플로우
 
 ```
 Phase 1: Warmup        → 역할/업무 파악
 Phase 2: Find Tasks    → 반복 업무 탐색  
 Phase 3: Map Process   → 시작→과정→결과물 맵핑
 Phase 4: Possibilities → 자동화 사례 제시
-Phase 4.5: Tech Detection → 외부 연동 필요성 감지 (NEW)
+Phase 4.5: Tech Detection → 외부 연동 필요성 감지
 Phase 5: Crystallize   → 스킬 확정 및 범위 조절
-Phase 6: Design Doc    → 맞춤형 설계서 생성 (NEW)
+Phase 6: Design Doc    → 맞춤형 설계서 생성 + 환경변수 자동 설정
+Phase 7: Deploy        → GitHub 배포 (워크샵 후)
 ```
 
 ### 외부 서비스 자동 감지
@@ -101,6 +102,19 @@ Phase 6: Design Doc    → 맞춤형 설계서 생성 (NEW)
 감지된 서비스에 맞는 MCP 설정 가이드를 **Context7로 실시간 조사**하여 생성합니다.
 - 미리 정해진 가이드가 아닌 최신 공식 문서 기반
 - 비개발자도 따라할 수 있는 친절한 설명
+
+### 환경변수 자동 설정 (NEW)
+
+외부 서비스 연동 시 필요한 API 키를 **Claude Code가 자동으로 설정**해줍니다.
+- "슬랙 토큰은 xoxb-xxxx야" → `.env` 파일에 자동 저장
+- `.env.example` 자동 생성 (배포 시 다른 사용자 참고용)
+- `.gitignore` 자동 생성 (민감정보 제외)
+
+### GitHub 배포 (NEW)
+
+워크샵에서 스킬을 완성한 후, **한 마디로 GitHub 배포**할 수 있습니다.
+- "스킬 배포해줘" → GitHub 레포 생성 + 설치 가이드 자동 생성
+- 다른 사람도 원클릭 설치 가능한 형태로 배포
 
 ## 설치 (원클릭)
 
@@ -216,6 +230,8 @@ irm https://raw.githubusercontent.com/daht-mad/workshop-prep-skill/main/install.
 └── {스킬명}/                      # 예: weekly-report/
     ├── {스킬명}-설계서.md          # 설계서 (flow.mermaid 포함)
     ├── 사전설문응답.md             # 인터뷰 Q&A 기록
+    ├── .env.example               # 필요한 환경변수 목록 (배포용)
+    ├── .gitignore                 # .env 제외 설정
     └── 연동가이드/                  # 외부 연동 시에만 생성
         ├── slack.md
         ├── google-drive.md
@@ -227,6 +243,8 @@ irm https://raw.githubusercontent.com/daht-mad/workshop-prep-skill/main/install.
 - **flow.mermaid**: 워크플로 시각화 (설계서 내부 포함)
 - **사전설문응답.md**: 인터뷰 질문/답변 기록 (Q1, A1, Q2, A2... 형식)
 - **연동가이드/**: 서비스별 연동 설정 가이드 (Context7 조사 기반)
+- **.env.example**: 환경변수 템플릿 (변수명 + 발급 URL 코멘트)
+- **.gitignore**: `.env` 파일 제외 설정 (민감정보 보호)
 
 > **Note**: 사전 설문에서는 문서만 생성됩니다. 실제 API 설정은 워크샵 당일 진행합니다.
 
@@ -270,6 +288,44 @@ Optional (선택) - 스킬 유형별
 - **마케터**: 캠페인 리포트, 콘텐츠 캘린더, 경쟁사 모니터링
 - **디자이너**: 핸드오프 문서, 피드백 정리, 디자인 시스템 문서화
 - **기타 비개발자**: 반복적인 문서/데이터/커뮤니케이션 업무
+
+## 워크샵 후: 스킬 배포하기
+
+워크샵에서 스킬을 완성한 후, GitHub에 배포하여 다른 사람도 사용할 수 있게 합니다.
+
+### 사전 조건
+
+1. **GitHub 계정**: [github.com](https://github.com) 가입
+2. **GitHub CLI**: 설치 필요
+   - macOS: `brew install gh`
+   - Windows: `winget install GitHub.cli`
+
+### 배포 방법
+
+Claude Code에게 말하면 끝!
+
+```
+스킬 배포해줘
+```
+
+Claude Code가 자동으로:
+1. README.md 생성 (설치 방법 + 환경변수 가이드)
+2. GitHub 레포 생성
+3. 설치 명령어 안내
+
+### 배포 후
+
+다른 사람에게 이렇게 공유하세요:
+
+```
+내가 만든 스킬이야! 설치하려면:
+
+macOS/Linux:
+curl -fsSL https://raw.githubusercontent.com/{내_아이디}/{스킬명}/main/install.sh | bash
+
+Windows:
+irm https://raw.githubusercontent.com/{내_아이디}/{스킬명}/main/install.ps1 | iex
+```
 
 ## 라이선스
 
