@@ -85,14 +85,14 @@ Windows에서는 `claude` 명령어가 바로 안 되는 경우가 많습니다.
 
 > VS Code 안에서 채팅 패널로 Claude를 쓰기 위한 확장 프로그램입니다. (Step 5와 별개)
 
-1. VS Code 왼쪽 사이드바에서 **Extensions** 아이콘 클릭 (네모 4개 모양)
-   > 💡 단축키: Mac `Cmd + Shift + X` / Windows `Ctrl + Shift + X`
+1. VS Code 왼쪽 사이드바에서 **Extensions** 아이콘 클릭 (네모 4개 모양, 아래 그림 참고)
+   > 💡 못 찾겠으면 단축키: Mac `Cmd + Shift + X` / Windows `Ctrl + Shift + X`
 2. 검색창에 **Claude** 입력
 3. **Anthropic** 제작 확인 후 **Install** 클릭
 
-### Extension 로그인
+### Extension 로그인 & 시작
 
-1. VS Code 왼쪽 사이드바에서 **Claude 아이콘** 클릭
+1. 설치가 끝나면 왼쪽 사이드바에 **Claude 아이콘** (🤖 모양)이 새로 생깁니다 → 클릭
 2. **Sign In** 버튼 클릭
 3. 브라우저에서 Claude 계정 로그인 → **허용** 클릭
 4. Claude 패널에 `안녕하세요` 입력 → 응답 오면 **완료!**
