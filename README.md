@@ -1,336 +1,162 @@
-# Workshop Prep Skill
+# 바이브코딩 워크숍 사전 준비 가이드
 
-Claude Code 바이브코딩 워크샵 사전 준비 스킬. 참석자의 업무를 인터뷰하여 맞춤형 스킬 설계서를 생성합니다.
+> **소요 시간**: 약 30분
+>
+> 본인 컴퓨터가 **Mac**인지 **Windows**인지 확인 후, 해당 섹션만 따라하세요.
 
 ---
 
-## ⚠️ 설치 전 필독
+## Step 1. GitHub 계정 만들기
+
+> 스킬 배포 및 공유를 위해 필요합니다.
+
+1. [github.com](https://github.com) 접속
+2. **Sign up** 클릭
+3. **Continue with Google** 클릭 → 본인 Google 계정으로 로그인
+4. 이메일 인증 완료
+
+> 💡 Google로 가입하면 비밀번호 관리가 편하고, 다른 개발 서비스 가입 시에도 유용합니다.
+
+---
+
+## Step 2. Claude 계정 & Pro 구독
+
+1. [claude.ai](https://claude.ai) 접속
+2. 계정 생성 후 **Pro 구독** ($20/월)
+
+---
+
+## Step 3. VS Code 설치
+
+> 💡 이미 **Cursor** 또는 **Antigravity** 쓰시는 분은 이 단계 건너뛰세요!
+
+1. [code.visualstudio.com](https://code.visualstudio.com/download) 접속
+2. 본인 OS(Mac/Windows) 버전 다운로드
+3. 다운로드된 파일 실행 → 설치
+
+---
+
+## Step 4. Claude Code 설치 (CLI)
+
+1. VS Code 상단 메뉴에서 **Terminal** → **New Terminal** 클릭
+   > 💡 단축키: `` Ctrl + ` `` (백틱, 숫자 1 왼쪽 키)
+
+2. 아래 명령어 복사 → 터미널에 붙여넣기 → Enter
+
+   **Mac:**
+   ```bash
+   curl -fsSL https://claude.ai/install.sh | bash
+   ```
+
+   **Windows:**
+   ```powershell
+   irm https://claude.ai/install.ps1 | iex
+   ```
+
+3. VS Code **완전히 종료** 후 다시 열기
+4. 터미널에서 확인: `claude --version` 입력 → 버전 나오면 성공!
+
+---
+
+## Step 5. Claude Code 로그인
+
+1. 터미널에 `claude` 입력 → Enter
+2. 브라우저가 자동으로 열림 → Claude 계정으로 로그인
+3. **허용** 클릭
+4. 터미널로 돌아와서 `안녕하세요` 입력 → 응답 오면 **CLI 설정 완료!**
+
+---
+
+## Step 6. Claude Extension 설치 (VS Code)
+
+1. VS Code 왼쪽 사이드바에서 **Extensions** 아이콘 클릭 (네모 4개 모양)
+   > 💡 단축키: Mac `Cmd + Shift + X` / Windows `Ctrl + Shift + X`
+2. 검색창에 **Claude** 입력
+3. **Anthropic** 제작 확인 후 **Install** 클릭
+
+### Extension 로그인
+
+1. VS Code 왼쪽 사이드바에서 **Claude 아이콘** 클릭
+2. **Sign In** 버튼 클릭
+3. 브라우저에서 Claude 계정 로그인 → **허용** 클릭
+4. Claude 패널에 `안녕하세요` 입력 → 응답 오면 **완료!**
+
+---
+
+## 문제 해결
+
+| 증상 | 해결 |
+|------|------|
+| `claude` 명령어가 안 됨 | VS Code 완전히 종료 후 재시작 |
+| 브라우저 로그인 후 터미널 반응 없음 | 브라우저에서 "허용" 클릭 확인 |
+| Extension이 안 보임 | VS Code 재시작 |
+| 로그인이 안 됨 | 브라우저 팝업 차단 해제 |
+| 응답이 안 옴 | Claude Pro 구독 상태 확인 |
+
+**해결 안 되면**: 오픈채팅방에 남겨주세요!
+
+---
+
+## Step 7. 워크숍 사전 스킬 설치 & 실행 🎯
+
+> **필수!** 워크숍 전에 이 스킬로 본인 업무를 정리하고, 스킬 설계서를 받아오세요.
+
+### 스킬 설치
+
+터미널에서 아래 명령어 실행:
+
+**Mac:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/daht-mad/workshop-prep-skill/main/install.sh | bash
+```
+
+**Windows:**
+```powershell
+irm https://raw.githubusercontent.com/daht-mad/workshop-prep-skill/main/install.ps1 | iex
+```
+
+### 프로젝트 폴더 준비
+
+1. 바탕화면이나 원하는 위치에 **새 폴더** 만들기 (이름: `my-first-skill`)
+2. VSCode 실행 → **File** → **Open Folder** → 방금 만든 폴더 선택
+
+### 스킬 실행
+
+VSCode 왼쪽 사이드바에서 **Claude Code 아이콘** 클릭 후 채팅창에 입력:
+
+```
+워크샵 준비해줘
+```
+
+> 💡 `/workshop-prep` 슬래시 커맨드도 가능해요.
+
+### ⚠️ 권한 허용 안내
 
 스킬 실행 시 Claude Code가 **권한 허용**을 여러 번 물어봅니다. 모두 허용해주세요!
 
 | 순서 | 질문 | 선택 |
 |------|------|------|
-| 1번 | "Do you want to allow..." (스킬 사용 동의) | **Yes** |
+| 1번 | "Do you want to allow..." | **Yes** |
 | 2번 | "Allow for this session/project?" | **Yes, allow for this project** |
 
-> **Tip**: 매번 묻는 게 귀찮다면 "Yes, allow for this project"를 선택하면 해당 프로젝트에서는 다시 묻지 않아요.
+### 대화 따라가기
+
+AI가 몇 가지 질문을 합니다:
+1. 현재 하시는 일 (직무/역할)
+2. 반복적으로 하는 작업
+3. 가장 귀찮은/시간 걸리는 작업
+4. 현재 프로세스 (시작 → 끝)
+
+**솔직하고 구체적으로** 답변해주세요!
+
+### 결과물
+
+대화가 끝나면 **스킬 설계서**가 자동 생성됩니다.
+이 설계서를 **워크숍 당일 가져오시면 됩니다!**
 
 ---
 
-## 빠른 시작 (3단계)
+## 참고 문서
 
-### 1. 터미널 열고 설치하기
-
-**macOS:**
-1. `Cmd + Space` → "터미널" 검색 → Enter
-2. 아래 명령어 복사해서 붙여넣기 → Enter
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/daht-mad/workshop-prep-skill/main/install.sh | bash
-```
-
-**Windows:**
-1. `Win + X` → **Windows PowerShell** 또는 **터미널** 클릭
-2. 아래 명령어 복사해서 붙여넣기 → Enter
-
-```powershell
-irm https://raw.githubusercontent.com/daht-mad/workshop-prep-skill/main/install.ps1 | iex
-```
-
-> 설치가 완료되면 터미널을 닫아도 됩니다.
-
-### 2. 프로젝트 폴더 만들고 VSCode로 열기
-
-1. 바탕화면이나 원하는 위치에 **새 폴더** 만들기 (이름: `my-first-skill`)
-2. VSCode 실행 → **File** → **Open Folder** → 방금 만든 폴더 선택
-
-### 3. Claude Code 익스텐션 열고 스킬 시작
-
-1. VSCode 왼쪽 사이드바에서 **Claude Code 아이콘** 클릭 (또는 `Cmd/Ctrl + Shift + P` → "Claude" 검색)
-2. 채팅창에 다음 중 **아무거나** 입력:
-
-```
-워크샵 준비해줘
-```
-
-다른 표현도 가능해요:
-- `스킬 설계 도와줘`
-- `업무 자동화하고 싶어`
-- `/workshop-prep`
-
-> **Tip**: 슬래시 커맨드(`/workshop-prep`)가 안 보여도 걱정 마세요!  
-> 자연어로 "워크샵 준비해줘"라고 말하면 동일하게 작동합니다.
-
----
-
-## 목적
-
-워크샵 참석자가 **자신만의 자동화 아이디어를 구체화**할 수 있도록 도와주는 인터뷰 챗봇입니다.
-
-- 뭘 자동화해야 할지 모르는 참석자를 질문으로 이끌어냄
-- 반복 업무를 파악하고 자동화 가능성을 탐색
-- 외부 서비스 연동 필요성을 감지하고 셋업 가이드 제공
-- 최종적으로 워크샵에서 사용할 **스킬 설계서** 출력
-
-## 주요 기능
-
-### 8단계 인터뷰 & 배포 워크플로우
-
-```
-Phase 1: Warmup        → 역할/업무 파악
-Phase 2: Find Tasks    → 반복 업무 탐색  
-Phase 3: Map Process   → 시작→과정→결과물 맵핑
-Phase 4: Possibilities → 자동화 사례 제시
-Phase 4.5: Tech Detection → 외부 연동 필요성 감지
-Phase 5: Crystallize   → 스킬 확정 및 범위 조절
-Phase 6: Design Doc    → 맞춤형 설계서 생성 + 환경변수 자동 설정
-Phase 7: Deploy        → GitHub 배포 (워크샵 후)
-```
-
-### 외부 서비스 자동 감지
-
-41개 서비스를 11개 카테고리로 분류하여 자동 감지:
-- 이메일 & 커뮤니케이션 (Gmail, Outlook, Slack, Teams 등)
-- 파일 저장 & 문서 (Drive, Notion, Confluence 등)
-- 일정 & 미팅 (Calendar, Zoom, Meet 등)
-- 프로젝트 관리 (Linear, Jira, Asana, Trello 등)
-- 데이터 & 스프레드시트 (Airtable, Sheets, Excel 등)
-- 그 외 (GitHub, Figma, OpenAI 등)
-
-### 동적 셋업 가이드 생성
-
-감지된 서비스에 맞는 MCP 설정 가이드를 **Context7로 실시간 조사**하여 생성합니다.
-- 미리 정해진 가이드가 아닌 최신 공식 문서 기반
-- 비개발자도 따라할 수 있는 친절한 설명
-
-### 환경변수 자동 설정 (NEW)
-
-외부 서비스 연동 시 필요한 API 키를 **Claude Code가 자동으로 설정**해줍니다.
-- "슬랙 토큰은 xoxb-xxxx야" → `.env` 파일에 자동 저장
-- `.env.example` 자동 생성 (배포 시 다른 사용자 참고용)
-- `.gitignore` 자동 생성 (민감정보 제외)
-
-### GitHub 배포 (NEW)
-
-워크샵에서 스킬을 완성한 후, **한 마디로 GitHub 배포**할 수 있습니다.
-- "스킬 배포해줘" → GitHub 레포 생성 + 설치 가이드 자동 생성
-- 다른 사람도 원클릭 설치 가능한 형태로 배포
-
-## 설치 (원클릭)
-
-터미널에서 한 줄만 실행하면 끝!
-
-### macOS / Linux
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/daht-mad/workshop-prep-skill/main/install.sh | bash
-```
-
-### Windows (PowerShell)
-
-```powershell
-irm https://raw.githubusercontent.com/daht-mad/workshop-prep-skill/main/install.ps1 | iex
-```
-
-### 설치되는 것
-
-| 항목 | 설명 |
-|------|------|
-| **workshop-prep 스킬** | `~/.claude/skills/workshop-prep/`에 설치 |
-| **Context7 MCP** | `~/.mcp.json`에 자동 추가 (API 키 입력 프롬프트) |
-| **심링크 설정** | Claude Code 호환성 자동 확인 |
-
-### Context7 API 키
-
-설치 중 API 키를 물어봅니다. 무료로 발급받을 수 있어요:
-
-1. [context7.com/dashboard](https://context7.com/dashboard) 접속
-2. 가입 (GitHub/Google 로그인)
-3. API Key 복사
-4. 설치 스크립트에 붙여넣기
-
-> 나중에 설정하려면 Enter로 스킵 → `~/.mcp.json`에서 수동 설정
-
-### 업데이트
-
-이미 설치되어 있는 경우, 설치 스크립트를 다시 실행하면 **업데이트 여부를 물어봅니다**.
-
-**macOS / Linux:**
-```bash
-curl -fsSL https://raw.githubusercontent.com/daht-mad/workshop-prep-skill/main/install.sh | bash
-```
-
-**Windows:**
-```powershell
-irm https://raw.githubusercontent.com/daht-mad/workshop-prep-skill/main/install.ps1 | iex
-```
-
-**프롬프트 예시:**
-```
-⚠ 기존 설치가 발견되었습니다
-
-기존 파일을 최신 버전으로 업데이트하시겠습니까?
-주의: 스킬 파일을 직접 수정했다면 변경사항이 사라집니다
-
-계속하시겠습니까? (y/N):
-```
-
-- **y 입력**: 최신 버전으로 업데이트
-- **N 또는 Enter**: 업데이트 취소
-
-> **주의**: 스킬 파일을 직접 수정했다면 백업 후 업데이트하세요.
-
-## 사용법
-
-### 스킬 호출
-
-**자연어로 말하기 (추천):**
-```
-워크샵 준비해줘
-스킬 설계 도와줘
-업무 자동화하고 싶어
-반복 업무 줄이고 싶어
-```
-
-**슬래시 커맨드:**
-```
-/workshop-prep
-```
-
-> 슬래시 커맨드가 목록에 안 뜨는 경우가 있어요.  
-> 그냥 자연어로 말해도 똑같이 작동하니 편하게 사용하세요!
-
-### 예시 대화
-
-**사용자**: 워크샵 준비해줘
-
-**스킬**: 
-> 안녕하세요! 워크샵에서 만들 스킬을 함께 설계해볼게요 😊
-> 
-> 먼저 간단한 질문 하나! **지금 회사에서 어떤 일을 맡고 계세요?**
-
-**사용자**: PM이에요. 주로 회의하고 문서 정리하는 일 해요.
-
-**스킬**:
-> 아 PM이시구나! 회의도 많고 문서 정리도 많을 것 같아요.
-> 
-> 혹시 이런 것들 중에 "아 이거 맨날 해..." 싶은 거 있으세요?
-> - 매주 같은 양식으로 보고서 쓰기
-> - 회의록 정리해서 공유하기
-> - 여러 소스에서 숫자 모아서 정리하기
-> 
-> 이 중에 해당되는 거 있어요? 없으면 다른 거 말씀해주셔도 돼요!
-
-### 최종 결과물
-
-인터뷰가 끝나면 다음 폴더 구조로 산출물이 생성됩니다:
-
-```
-프로젝트루트/
-└── {스킬명}/                      # 예: weekly-report/
-    ├── {스킬명}-설계서.md          # 설계서 (flow.mermaid 포함)
-    ├── 사전설문응답.md             # 인터뷰 Q&A 기록
-    ├── .env.example               # 필요한 환경변수 목록 (배포용)
-    ├── .gitignore                 # .env 제외 설정
-    └── 연동가이드/                  # 외부 연동 시에만 생성
-        ├── slack.md
-        ├── google-drive.md
-        └── ...
-```
-
-**산출물 내용**:
-- **설계서**: MVP 목표, 입출력 명세, 범위, 실패 처리, 테스트 체크리스트
-- **flow.mermaid**: 워크플로 시각화 (설계서 내부 포함)
-- **사전설문응답.md**: 인터뷰 질문/답변 기록 (Q1, A1, Q2, A2... 형식)
-- **연동가이드/**: 서비스별 연동 설정 가이드 (Context7 조사 기반)
-- **.env.example**: 환경변수 템플릿 (변수명 + 발급 URL 코멘트)
-- **.gitignore**: `.env` 파일 제외 설정 (민감정보 보호)
-
-> **Note**: 사전 설문에서는 문서만 생성됩니다. 실제 API 설정은 워크샵 당일 진행합니다.
-
-## 파일 구조
-
-```
-workshop-prep/
-├── install.sh               # 원클릭 설치 (macOS/Linux)
-├── install.ps1              # 원클릭 설치 (Windows)
-├── SKILL.md                 # 메인 스킬 정의
-├── README.md                # 이 파일
-└── references/
-    ├── examples.md          # 직무별 반복 업무 예시
-    ├── integrations.md      # 외부 서비스 감지 키워드 (41개)
-    └── template.md          # 설계서 템플릿 (Core + Optional)
-```
-
-## 설계서 템플릿 구조
-
-```
-Core (필수) - 8개 섹션
-├── 0. 선언 (이름, 설명, 유형, MVP 목표)
-├── 1. 언제 쓰나요
-├── 2. 사용법
-├── 3. 입력/출력 명세
-├── 4. 범위 (하는것/안하는것)
-├── 5. 데이터/도구/권한
-├── 6. 실패/예외 처리
-├── 7. 대화 시나리오 (정상+실패)
-└── 8. 테스트 & Done 기준
-
-Optional (선택) - 스킬 유형별
-├── A. 파일 기반
-├── B. 외부 API 연동
-└── C. 다단계 워크플로우
-```
-
-## 대상
-
-- **PM**: 회의록 자동화, 주간보고 생성, 이슈 정리
-- **마케터**: 캠페인 리포트, 콘텐츠 캘린더, 경쟁사 모니터링
-- **디자이너**: 핸드오프 문서, 피드백 정리, 디자인 시스템 문서화
-- **기타 비개발자**: 반복적인 문서/데이터/커뮤니케이션 업무
-
-## 워크샵 후: 스킬 배포하기
-
-워크샵에서 스킬을 완성한 후, GitHub에 배포하여 다른 사람도 사용할 수 있게 합니다.
-
-### 사전 조건
-
-1. **GitHub 계정**: [github.com](https://github.com) 가입
-2. **GitHub CLI**: 설치 필요
-   - macOS: `brew install gh`
-   - Windows: `winget install GitHub.cli`
-
-### 배포 방법
-
-Claude Code에게 말하면 끝!
-
-```
-스킬 배포해줘
-```
-
-Claude Code가 자동으로:
-1. README.md 생성 (설치 방법 + 환경변수 가이드)
-2. GitHub 레포 생성
-3. 설치 명령어 안내
-
-### 배포 후
-
-다른 사람에게 이렇게 공유하세요:
-
-```
-내가 만든 스킬이야! 설치하려면:
-
-macOS/Linux:
-curl -fsSL https://raw.githubusercontent.com/{내_아이디}/{스킬명}/main/install.sh | bash
-
-Windows:
-irm https://raw.githubusercontent.com/{내_아이디}/{스킬명}/main/install.ps1 | iex
-```
-
-## 라이선스
-
-MIT
-
-## 기여
-
-이슈와 PR 환영합니다!
+- [Claude Code 공식 설치 가이드 (한국어)](https://code.claude.com/docs/ko/setup)
+- [왕초보를 위한 Claude Code 설치 방법](https://mildit.tistory.com/25)
